@@ -1,5 +1,6 @@
 package SpringLessons.project02.Repositories;
 
+import SpringLessons.project02.Model.Manager;
 import SpringLessons.project02.Model.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player,Long> {
-
-    List<Player> findByTeam_Id(Long teamId);
-
+public interface ManagerRepository extends JpaRepository<Manager,Long> {
+    // List<Manager> findByTeam_Id(Long teamId);
 }

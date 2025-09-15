@@ -1,5 +1,6 @@
 package SpringLessons.project02.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,11 @@ public class Team {
     private String name;
     private String city;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Player> players;
+
+    @OneToOne
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
 }

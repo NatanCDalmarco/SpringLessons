@@ -25,20 +25,26 @@ public class PlayerController {
     @GetMapping("/{id}")
     public Player findById(@PathVariable Long id) {
         return playerRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found player brother."));
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Non found player brother."));
+    }
+
+    @GetMapping("/team/{team_id}")
+    public List<Player> findByTeam(@PathVariable Long team_id){
+        return playerRepository.findByTeam_Id(team_id);
     }
 
     @PutMapping
-    public Team update(@RequestBody Team team){
-        return team;
+    public Player update(@RequestBody Player player){
+        return playerRepository.save(player);
     }
 
     @PostMapping
     public Player save(@RequestBody Player player){
-        return player;
+        return playerRepository.save(player);
     }
 
     @DeleteMapping
-    public void deleteById(@RequestParam String name){
+    public void delete(@RequestBody Player player){
+        playerRepository.delete(player);
     }
 }

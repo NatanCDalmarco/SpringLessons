@@ -28,14 +28,23 @@ public class TeamController {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found team brother."));
     }
 
-
-    @GetMapping
-    public Team findOne(@RequestParam String name){
-        return null;
+    @GetMapping("/city/{city}")
+    public List<Team> findByCity(@PathVariable String city){
+        return teamRepository.findByCity(city);
     }
 
     @PutMapping
     public Team update(@RequestBody Team team){
-        return team;
+        return teamRepository.save(team);
+    }
+
+    @PostMapping
+    public Team create(@RequestBody Team team){
+        return teamRepository.save(team);
+    }
+
+    @DeleteMapping
+    public void delete(@RequestBody Team team){
+        teamRepository.delete(team);
     }
 }
